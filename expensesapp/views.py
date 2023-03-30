@@ -31,7 +31,9 @@ def index(request):
     paginator=Paginator(expenses, 2)
     page_number=request.GET.get('page')
     page_obj=paginator.get_page(page_number)
-    # currency=Userpreference.objects.get_or_create(user=request.user).currency
+
+    currency=Userpreference.objects.get_or_create(user=request.user).currency
+
     context = {
         "expenses": expenses,
         "page_obj": page_obj,
