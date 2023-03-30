@@ -19,10 +19,9 @@ def index(request):
     # pdb.set_trace()
     exists = Userpreference.objects.filter(user=request.user).exists()
     user_preferences = None
-
     if exists:
         user_preferences = Userpreference.objects.get(user=request.user)
-
+        
     if request.method == "GET":
         return render(
             request,
