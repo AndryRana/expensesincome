@@ -2,7 +2,7 @@ from django.shortcuts import render
 import os
 import json
 from django.conf import settings
-from .models import Userpreference
+from .models import UserPreference
 from django.contrib import messages
 
 
@@ -17,10 +17,10 @@ def index(request):
 
     # import pdb
     # pdb.set_trace()
-    exists = Userpreference.objects.filter(user=request.user).exists()
+    exists = UserPreference.objects.filter(user=request.user).exists()
     user_preferences = None
     if exists:
-        user_preferences = Userpreference.objects.get(user=request.user)
+        user_preferences = UserPreference.objects.get(user=request.user)
         
     if request.method == "GET":
         return render(
@@ -34,7 +34,7 @@ def index(request):
             user_preferences.currency = currency
             user_preferences.save()
         else:
-            Userpreference.objects.create(user=request.user, currency=currency)
+            UserPreference.objects.create(user=request.user, currency=currency)
         messages.success(request, "Changes saved")
         return render(
             request,
