@@ -14,7 +14,7 @@ def index(request):
         data = json.load(json_file)
         for k, v in data.items():
             currency_data.append({"name": k, "value": v})
-
+ 
     # import pdb
     # pdb.set_trace()
     exists = UserPreference.objects.filter(user=request.user).exists()

@@ -12,6 +12,7 @@ from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeErr
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .utils import account_activation_token
 from django.contrib import auth
+from userpreferences.models import UserPreference
 
 
 # Create your views here.
@@ -139,13 +140,16 @@ class LoginView(View):
 
             if username and password:
                 user = auth.authenticate(username=username, password=password)
-
                 if user:
                     if user.is_active:
                         auth.login(request, user)
-                        messages.success(request, 'Welcome, ' +
-                                        user.username+' you are now logged in')
-                        return redirect('expenses')
+                        exists = UserPreference.objects.filter(user=request.user).exists()
+                        if exists:
+                            messages.success(request, 'Welcome, ' +
+                                            user.username+' you are now logged in')
+                            return redirect('expenses')
+                        else:
+                            return redirect('preferences')
                     messages.error(
                         request, 'Account is not active,please check your email')
                     return render(request, 'authentication/login.html')
