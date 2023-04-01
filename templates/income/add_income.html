@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Income</li>
+        </ol>
+    </nav>
+
+    <div class="card ">
+        <div class="card-body ">
+            <form action="{% url 'add_income' %}" method="post">
+                {% include 'partials/_messages.html' %}
+                {% csrf_token %}
+                <div class="mb-3 mt-3">
+                    <label for="" class="form-label">Amount</label>
+                    <input type="text" name="amount" id="" class="form-control form-control-sm"
+                        value="{{ values.amount }}">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Description</label>
+                    <input type="text" name="description" id="" class="form-control form-control-sm"
+                        value="{{ values.description }}">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Sources</label>
+                    <select name="source" class="form-select form-select-sm">
+                        {% for source in sources %}
+                        <option value="{{ source.name }}" name="source">{{ source.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Date of income</label>
+                    <input type="date" name="income_date" id="" class="form-control form-control-sm">
+                </div>
+                <div class="col-sm-6">
+                    <input type="submit" value="Submit" class="btn btn-outline-primary btn-sm mb-3">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock content %}
