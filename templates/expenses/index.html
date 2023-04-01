@@ -22,6 +22,7 @@
     <div class="container">
         {% include 'partials/_messages.html' %}
 
+        {% if expenses.count %}
         <div class="row">
             <div class="col-md-8 mb-3 mt-3">
 
@@ -33,7 +34,6 @@
             </div>
         </div>
 
-        {% if expenses.count %}
             <div class="app-table">
                 <table class="table table-striped table-hover">
                     <thead>
