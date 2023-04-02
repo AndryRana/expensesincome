@@ -9,6 +9,8 @@ psycopg2 = "*"
 django-heroku = "*"
 gunicorn = "*"
 validate-email = "*"
+xlwt = "*"
+weasyprint = "==52.5"
 
 [dev-packages]
 black = "*"

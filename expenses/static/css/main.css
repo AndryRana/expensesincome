@@ -20,3 +20,8 @@
 .showPasswordToggle:hover {
     transform: scale(1.2);
 }
+
+.chartBox{
+    width: 400px;
+    height: 400px;
+}
